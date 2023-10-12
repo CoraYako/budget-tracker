@@ -52,6 +52,11 @@ function generateAndAddTransactionToList(source, amount) {
     return transaction;
 }
 
+function deleteTransaction(id) {
+    transactions = transactions.filter(transaction => transaction.id !== id);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+
 /**
  * Take each transaction and show it in income or expenses.
  */
@@ -78,4 +83,18 @@ form.addEventListener("submit", event => {
     localStorage.setItem("transactions", JSON.stringify(transactions));
     addTransactionDOM(transaction.id, transaction.source, transaction.amount, transaction.time);
     form.reset();
+});
+
+incomeList.addEventListener("click", event => {
+    if (event.target.classList.contains("delete")) {
+        event.target.parentElement.remove();
+        deleteTransaction(Number.parseInt(event.target.parentElement.dataset.id));
+    }
+});
+
+expenseList.addEventListener("click", event => {
+    if (event.target.classList.contains("delete")) {
+        event.target.parentElement.remove();
+        deleteTransaction(Number.parseInt(event.target.parentElement.dataset.id));
+    }
 });
