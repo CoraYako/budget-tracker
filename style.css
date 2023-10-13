@@ -176,3 +176,12 @@ h3 {
 .records i.delete:hover {
     color: #b42d51;
 }
+
+.error-message {
+    color: rgb(189, 8, 8);
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
